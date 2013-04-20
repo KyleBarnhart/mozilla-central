@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Snap-to-lines True for Horizonal
+================================
+
+For line:2, top is 0% then moved by hieght of first line * 2
+
+"If the text track cue writing direction is horizontal, and the text track cue snap-to-lines flag is not set
+Let y-position be the text track cue computed line position."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+"Horizontal: Let step be the height of the first line box in boxes."
+"6. Let line position be the text track cue computed line position."
+"8. Let position be the result of multiplying step and line position."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		div {
+			margin: 0px;
+			padding: 0px;
+		}
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+		}
+		
+		/* cue constants, same for every cue */
+		.cueBox {
+			position: absolute;
+			unicode-bidi: plaintext;
+			font: 24px sans-serif; 			/* 5vh = 24px */
+			color: rgba(255,255,255,1);
+			white-space: pre-line;
+			
+		}
+		.cueBackgroundBox {
+			display:inline;
+			background: rgba(0,0,0,0.8);
+		}
+		
+		/* cue variables, depends on cue */
+		#testCue {
+			direction: ltr;
+			writing-mode: horizontal-tb;
+			left: 0px;						/* 0vw = 0px */
+			top: 0px;						/* 0vh = 0px */
+			width: 640px;					/* 100vw = 640px */
+			text-align: center;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+	</video>
+	
+	<!-- Whitespace breaks layout -->
+	<div id="testCue" class="cueBox"><div class="cueBackgroundBox">WebVTT Test</div></div>
+
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Get the line height of the first cue
+		var testCue = document.getElementById('testCue');
+		var firstLineHeight = parseFloat(window.getComputedStyle(testCue, null).getPropertyValue("height"));
+		
+		// Move cue down by video height - firstLineHeight
+		testCue.style.top = (2 * firstLineHeight) + "px";
+		
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

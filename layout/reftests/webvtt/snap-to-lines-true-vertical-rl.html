@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Snap-to-lines False for Vertical Growing Left
+==============================================
+
+For line:2, left is 0%
+then left is video width (640px) - (3 * width of first line)
+
+"If the text track cue writing direction is vertical growing left, and the text track cue snap-to-lines flag is not set
+Let x-position be the text track cue computed line position."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+"Vertical: Let step be the width of the first line box in boxes."
+6. Let line position be the text track cue computed line position.
+7. Vertical Growing Left: Add one to line position then negate it.
+8. Let position be the result of multiplying step and line position.
+9. Vertical Growing Left: Decrease position by the width of the bounding box of the boxes in boxes, then increase position by step."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="snap-to-lines-true-vertical-rl.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Get the line height of the first cue
+		var testCue = document.getElementById('testCue');
+		var firstLineHeight = parseFloat(window.getComputedStyle(testCue, null).getPropertyValue("height"));
+		
+		// Move cue down by video height - firstLineHeight
+		testCue.style.top = (480 - firstLineHeight) + "px";
+		
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Writing Direction Vertical Growing Left and Aligned Middle
+===========================================================
+
+At position 50%, height should become 100%, and top 0%.
+
+"If the text track cue alignment is middle, the text track cue text position is less than or equal to 50
+Let maximum size be the text track cue text position multiplied by two."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+"If the text track cue writing direction is vertical growing left, and the text track cue alignment is middle
+Let y-position be the text track cue text position minus half of size."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="setting-vertical-rl-middle50.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

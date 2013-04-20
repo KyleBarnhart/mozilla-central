@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+2 Track Track Order Test B
+==========================
+
+Cue in track 2 should come before cue in track 1 because track 1 is the second element.
+This will make sure the name of the track is irrelevant.
+
+
+"8. For each track track in tracks, append to cues all the cues from track's list of cues that have their text track cue active flag set."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+This means that cues from different tracks should display the same as cues for the same track.
+The purpose of this test is to ensure that cues are displayed in the correct order.
+
+According to the HTML5 specification
+"13. Sort the tasks in events in ascending time order (tasks with earlier times first).
+Further sort tasks in events that have the same time by the relative text track cue order of the text track cues associated with these tasks."
+http://www.w3.org/html/wg/drafts/html/master/embedded-content-0.html#list-of-newly-introduced-cues (April, 17, 2013)
+
+The event time is the start time for entering cues, and later of the start and end time for exiting cues.
+
+"text track cue order, which is determined as follows: first group the cues by their text track, with the groups being sorted in the same order as their text tracks appear in the media element's list of text tracks; then, within each group, cues must be sorted by their start time, earliest first; then, any cues with the same start time must be sorted by their end time, latest first; and finally, any cues with identical end times must be sorted in the order they were last added to their respective text track list of cues, oldest first"
+http://www.w3.org/html/wg/drafts/html/master/embedded-content-0.html#text-track-cue-order (April, 17, 2013)
+
+Therefor the correct cue order is:
+1. start time (ascending)
+2. track order (top to bottom)
+3. end time (descending)
+4. cue order (top to bottom)
+
+This is the test for 2 tracks where the cue's start time in track 1 is before the cue's start time in track 2.
+-->
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		div {
+			margin: 0px;
+			padding: 0px;
+		}
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+		}
+		
+		/* cue constants, same for every cue */
+		.cueBox {
+			position: absolute;
+			unicode-bidi: plaintext;
+			font: 24px sans-serif; 			/* 5vh = 24px */
+			color: rgba(255,255,255,1);
+			white-space: pre-line;
+			
+		}
+		.cueBackgroundBox {
+			display:inline;
+			background: rgba(0,0,0,0.8);
+		}
+		
+		/* cue variables, depends on cue */
+		#testCue1 {
+			direction: ltr;
+			writing-mode: horizontal-tb;
+			left: 0px;						/* 0vw = 0px */
+			top: 0px;						/* 0vh = 0px */
+			width: 640px;					/* 100vw = 640px */
+			text-align: center;
+		}
+		#testCue2 {
+			direction: ltr;
+			writing-mode: horizontal-tb;
+			left: 0px;						/* 0vw = 0px */
+			top: 0px;						/* 0vh = 0px */
+			width: 640px;					/* 100vw = 640px */
+			text-align: center;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+	</video>
+	
+	<!-- Whitespace breaks layout -->
+	<div id="testCue1" class="cueBox"><div class="cueBackgroundBox">WebVTT Test 2</div></div>
+	<div id="testCue2" class="cueBox"><div class="cueBackgroundBox">WebVTT Test 1</div></div>
+
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Get the line height of the first cue
+		var testCue1 = document.getElementById('testCue1');
+		var testCue2 = document.getElementById('testCue2');
+		var firstLineHeight = parseFloat(window.getComputedStyle(testCue1, null).getPropertyValue("height"));
+		
+		// Move cue down by video height - firstLineHeight
+		testCue1.style.top = (480 - firstLineHeight) + "px";
+		testCue2.style.top = (480 - (2 * firstLineHeight)) + "px";
+		
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

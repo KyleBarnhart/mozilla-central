@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Writing Direction Right-To-Left
+===============================
+
+Check that thw writting direction is correct for rtl languages.
+
+
+"3. If the paragraph embedding level determined in the previous step is even (the paragraph direction is left-to-right), let direction be 'ltr', otherwise, let it be 'rtl'."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="basic.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

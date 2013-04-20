@@ -1,0 +1,75 @@
+# WebVTT Render Tests
+# http://dev.w3.org/html5/webvtt/#cues-with-video
+
+# Test the default behaviour. No particular rule. (April 17, 2013)
+== basic.html basic-ref.html
+
+# Make sure cues do not render for the audio element. (April 17, 2013)
+== audio.html audio-ref.html
+
+# Make sure control interface and cue do not overlap. (April 17, 2013)
+== controls.html controls-ref.html
+
+# Ensure cues display in the correct order for multiple cues and tracks. (April 17, 2013)
+== 2tracks-start-time-a.html 2tracks-start-time-a-ref.html
+== 2tracks-start-time-b.html 2tracks-start-time-b-ref.html
+== 1track-start-time-a.html 1track-start-time-a-ref.html
+== 1track-start-time-b.html 1track-start-time-b-ref.html
+== 2tracks-track-order-a.html 2tracks-track-order-a-ref.html
+== 2tracks-track-order-b.html 2tracks-track-order-b-ref.html
+== 2tracks-end-time-a.html 2tracks-end-time-a-ref.html
+== 2tracks-end-time-b.html 2tracks-end-time-b-ref.html
+== 1track-end-time-a.html 1track-end-time-a-ref.html
+== 1track-end-time-b.html 1track-end-time-b-ref.html
+== 1track-cue-order-a.html 1track-cue-order-a-ref.html
+== 1track-cue-order-b.html 1track-cue-order-b-ref.html
+
+# Right to left writing direction test (April 17, 2013)
+== writing-direction-rtl.html writing-direction-rtl-ref.html
+
+# Writing mode vertical test (April 17, 2013)
+== writing-mode-vertical-lr.html writing-mode-vertical-lr-ref.html
+== writing-mode-vertical-rl.html writing-mode-vertical-rl-ref.html
+
+# Cue writing direction, alignment, and writting mode tests. (April 17, 2013)
+# The rules for direction, alignment, and mode depend on each other
+# so tests for each individually would be the identical.
+# There is a specification bug for positioning cues with right-to-left text. Those tests need to be done.
+== setting-horizontal-end-ltr.html setting-horizontal-end-ltr-ref.html
+== setting-horizontal-left-ltr.html setting-horizontal-left-ltr-ref.html
+== setting-horizontal-middle49-ltr.html setting-horizontal-middle49-ltr-ref.html
+== setting-horizontal-middle50-ltr.html setting-horizontal-middle50-ltr-ref.html
+== setting-horizontal-middle51-ltr.html setting-horizontal-middle51-ltr-ref.html
+== setting-horizontal-right-ltr.html setting-horizontal-right-ltr-ref.html
+== setting-horizontal-start-ltr.html setting-horizontal-start-ltr-ref.html
+== setting-vertical-lr-end.html setting-vertical-lr-end-ref.html
+== setting-vertical-lr-left.html setting-vertical-lr-left-ref.html
+== setting-vertical-lr-middle49.html setting-vertical-lr-middle49-ref.html
+== setting-vertical-lr-middle50.html setting-vertical-lr-middle50-ref.html
+== setting-vertical-lr-middle51.html setting-vertical-lr-middle51-ref.html
+== setting-vertical-lr-right.html setting-vertical-lr-right-ref.html
+== setting-vertical-lr-start.html setting-vertical-lr-start-ref.html
+== setting-vertical-rl-end.html setting-vertical-rl-end-ref.html
+== setting-vertical-rl-left.html setting-vertical-rl-left-ref.html
+== setting-vertical-rl-middle49.html setting-vertical-rl-middle49-ref.html
+== setting-vertical-rl-middle50.html setting-vertical-rl-middle50-ref.html
+== setting-vertical-rl-middle51.html setting-vertical-rl-middle51-ref.html
+== setting-vertical-rl-right.html setting-vertical-rl-right-ref.html
+== setting-vertical-rl-start.html setting-vertical-rl-start-ref.html
+
+# Snap-to-line tests
+== snap-to-lines-false-horizontal.html snap-to-lines-false-horizontal-ref.html
+== snap-to-lines-false-vertical-lr.html snap-to-lines-false-vertical-lr-ref.html
+== snap-to-lines-false-vertical-rl.html snap-to-lines-false-vertical-rl-ref.html
+== snap-to-lines-true-horizontal.html snap-to-lines-true-horizontal-ref.html
+== snap-to-lines-true-vertical-lr.html snap-to-lines-true-vertical-lr-ref.html
+== snap-to-lines-true-vertical-rl.html snap-to-lines-true-vertical-rl-ref.html
+
+# Text wrapping tests
+== wrap-balance.html wrap-balance-ref.html
+== wrap-break-word.html wrap-break-word-ref.html
+
+# Cue test payload tag tests
+== tag-bold.html tag-bold-ref.html
+== tag-italic.html tag-italic-ref.html
+== tag-underline.vtt.html tag-underline-ref.html

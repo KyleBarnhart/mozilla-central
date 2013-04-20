@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Snap-to-lines False for Horizonal
+=================================
+
+For line:30%, top is 30%
+
+"If the text track cue writing direction is horizontal, and the text track cue snap-to-lines flag is not set
+Let y-position be the text track cue computed line position."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="snap-to-lines-false-horizontal.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

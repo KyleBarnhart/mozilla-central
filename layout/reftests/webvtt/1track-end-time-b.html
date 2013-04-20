@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+1 Track End Time Test B
+=========================
+
+Two cues in one track with second cue's end time earlier than first cue
+
+
+"8. For each track track in tracks, append to cues all the cues from track's list of cues that have their text track cue active flag set."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+This means that cues from different tracks should display the same as cues for the same track.
+The purpose of this test is to ensure that cues are displayed in the correct order.
+
+According to the HTML5 specification
+"13. Sort the tasks in events in ascending time order (tasks with earlier times first).
+Further sort tasks in events that have the same time by the relative text track cue order of the text track cues associated with these tasks."
+http://www.w3.org/html/wg/drafts/html/master/embedded-content-0.html#list-of-newly-introduced-cues (April, 17, 2013)
+
+The event time is the start time for entering cues, and later of the start and end time for exiting cues.
+
+"text track cue order, which is determined as follows: first group the cues by their text track, with the groups being sorted in the same order as their text tracks appear in the media element's list of text tracks; then, within each group, cues must be sorted by their start time, earliest first; then, any cues with the same start time must be sorted by their end time, latest first; and finally, any cues with identical end times must be sorted in the order they were last added to their respective text track list of cues, oldest first"
+http://www.w3.org/html/wg/drafts/html/master/embedded-content-0.html#text-track-cue-order (April, 17, 2013)
+
+Therefor the correct cue order is:
+1. start time (ascending)
+2. track order (top to bottom)
+3. end time (descending)
+4. cue order (top to bottom)
+
+This is the test for 2 tracks where the cue's start time in track 1 is before the cue's start time in track 2.
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="1track-start-time-b.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

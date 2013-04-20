@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Text Wrapping Balance Test
+==========================
+
+If a cue must wrap accorss moultiple lines, break as points to keep the overall width to a minimum.
+
+A long sentence should look
+like this sentence does.
+
+A long sentence should not look like
+this sentence does.
+
+"Regardless of the value of the 'white-space' property, any line breaks inserted by the user agent for the purposes of line wrapping must be placed so as to minimize Δ across each run of consecutive lines between preserved newlines in the source. Δ for a set of lines is defined as the sum over each line of the absolute of the difference between the line's length and the mean line length of the set."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="wrap-balance.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

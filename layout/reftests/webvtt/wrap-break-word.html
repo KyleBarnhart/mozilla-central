@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Text Wrapping Word Break Test
+=============================
+
+Text must never go beyond the container. It should break words.
+
+"Regardless of the value of the 'white-space' property, lines must be wrapped at the edge of their containing blocks, even if doing so requires splitting a word where there is no line breaking opportunity. (Thus, normally text wraps as needed, but if there is a particularly long word, it does not overflow as it normally would in CSS, it is instead forcibly wrapped at the box's edge.)"
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<!DOCTYPE html>
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+		<track src="wrap-break-word.vtt">
+	</video>
+	
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Audio Test
+==========
+
+Make sure cues do not render for the audio element.
+
+
+"1. If the media element is an audio element, or is another playback mechanism with no rendering area, abort these steps. There is nothing to render."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April 17, 2013)
+-->
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<audio id="testVideo">
+		<source src="audio.ogg" type="audio/ogg">
+	</audio>
+
+	<script src="testScript.js"></script>
+	<script type="text/javascript">
+		// Load, seek, and pause audio, then run test
+		loadVideo();
+	</script>
+</body>
+</html>

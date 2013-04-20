@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+WebVTT Rendering Tests
+
+Writing Direction Vertical Growing Right and Aligned Middle
+===========================================================
+
+At position 49%, height should become 98%, and top 0%.
+
+"If the text track cue alignment is middle, the text track cue text position is less than or equal to 50
+Let maximum size be the text track cue text position multiplied by two."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+
+"If the text track cue writing direction is vertical growing right, and the text track cue alignment is middle
+Let y-position be the text track cue text position minus half of size."
+http://dev.w3.org/html5/webvtt/#cues-with-video (April, 17, 2013)
+-->
+<html class="reftest-wait">
+<head>
+	<meta charset="UTF-8">
+	
+	<style>
+		div {
+			margin: 0px;
+			padding: 0px;
+		}
+		#testVideo {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 640px;
+			height: 480px;
+		}
+		
+		/* cue constants, same for every cue */
+		.cueBox {
+			position: absolute;
+			unicode-bidi: plaintext;
+			font: 24px sans-serif; 			/* 5vh = 24px */
+			color: rgba(255,255,255,1);
+			white-space: pre-line;
+			
+		}
+		.cueBackgroundBox {
+			display:inline;
+			background: rgba(0,0,0,0.8);
+		}
+		
+		/* cue variables, depends on cue */
+		#testCue {
+			direction: ltr;
+			left: 0px;						/* 0vw = 0px */
+			top: 0px;						/* 0vh = 0px */
+			text-align: center;
+			
+			/* writing-mode: vertical-lr;    doesn't work */
+			/* height: 470.4px;				 98vh = 470.4px */
+			width: 470.4px;
+			transform:  rotate(90deg);		
+			transform-origin:0px 0px;
+		}
+	</style>
+	
+	<title>WebVTT</title>
+</head>
+<body>
+	<video id="testVideo">
+		<source src="grey320x240.ogv" type="video/ogg">
+	</video>
+	
+	<!-- Whitespace breaks layout -->
+	<div id="testCue" class="cueBox"><div class="cueBackgroundBox">WebVTT Test</div></div>
+
+	<script src="testScript.js"></script>
+	<script type="text/javascript">		
+		// Get the line height of the first cue
+		var testCue = document.getElementById('testCue');
+		var firstLineHeight = parseFloat(window.getComputedStyle(testCue, null).getPropertyValue("height"));
+
+		// Move cue down by video height - firstLineHeight (+ line height for rotate)
+		testCue.style.left = 640 + "px";
+		
+		// Load, seek, and pause video, then run test
+		loadVideo();
+	</script>
+</body>
+</html>
